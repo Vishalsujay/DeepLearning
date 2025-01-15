@@ -1,20 +1,43 @@
 # Neural Network Models and Data Loaders in PyTorch
 
-This repository includes various neural network models and custom data loaders implemented using PyTorch. The repository is modular and organized to help both beginners and advanced users explore and experiment with neural networks and custom data preprocessing pipelines.
+This repository provides a collection of neural network models and custom data loaders implemented using PyTorch. It is designed for both beginners and advanced users to explore, experiment, and learn about neural network architectures and preprocessing pipelines. 
+
+---
+
+## Table of Contents
+1. [Models](#models)
+    - [Linear Regression](#1-linear-regression)
+    - [Multiclassification](#2-multiclassification)
+    - [Handwritten Digits Classification Using Multilayer Perceptron](#3-handwritten-digits-classification-using-multilayer-perceptron)
+    - [Convolutional Neural Network (CNN)](#4-convolutional-neural-network-cnn-coming-soon)
+    - [Recurrent Neural Network (RNN)](#5-recurrent-neural-network-rnn-coming-soon)
+    - [Autoencoder](#6-autoencoder-coming-soon)
+2. [Data Loaders](#data-loaders)
+    - [Image Data Loader](#1-image-data-loader)
+    - [Numerical Data Loader](#2-numerical-data-loader)
+3. [Installation](#installation)
+4. [Contributions](#contributions)
+5. [License](#license)
 
 ---
 
 ## Models
 
-This repository includes a range of neural network models, each implemented in its own subdirectory for clarity. Below are the currently available and planned models:
+This repository includes various neural network models, each organized in its own subdirectory for clarity.
 
 ### 1. **Linear Regression**
-- **Description**: A basic linear regression model demonstrating supervised learning.
+- **Description**: A basic implementation of linear regression for supervised learning tasks.
 - **Directory**: [LinearRegression](linear_regression_pytorch)
 - **Dependencies**: PyTorch
+- **Features**:
+  - Demonstrates the fundamental concepts of regression.
+  - Uses mean squared error (MSE) as the loss function.
 - **How to Run**:
   - Navigate to the `linear_regression_pytorch` directory.
-  - Run the script: `python linear_regression.py`.
+  - Run the script: 
+    ```bash
+    python linear_regression.py
+    ```
 
 ---
 
@@ -22,47 +45,80 @@ This repository includes a range of neural network models, each implemented in i
 - **Description**: A neural network model for multiclass classification using the Iris dataset.
 - **Directory**: [MultiClassification](multiclassification_pytorch)
 - **Dependencies**: PyTorch, scikit-learn
-- **How to Run**:
-  - Navigate to the `multiclassification_pytorch` directory.
-  - Run the script: `python multiclassification.py`.
 - **Features**:
   - Two architectures: `Multiclassification` and `NeuralNetAdvance`.
   - Implements dropout for regularization.
-  - Demonstrates the use of the Iris dataset for classification tasks.
+  - Uses the Iris dataset for classification tasks.
+- **How to Run**:
+  - Navigate to the `multiclassification_pytorch` directory.
+  - Run the script: 
+    ```bash
+    python multiclassification.py
+    ```
 
 ---
 
-### 3. **Convolutional Neural Network (CNN)** (Coming Soon)
-- **Description**: A model designed to process grid-like data, such as images, by using convolutional layers.
+### 3. **Handwritten Digits Classification Using Multilayer Perceptron**
+- **Description**: A neural network model for classifying handwritten digits using the MNIST dataset.
+- **Directory**: [HandwrittenDigits](handwritten_digits_pytorch)
+- **Dependencies**: PyTorch, torchvision
+- **Features**:
+  - Implements a simple Multilayer Perceptron (MLP) architecture.
+  - Trains on the MNIST dataset for handwritten digit classification.
+  - Includes training and evaluation scripts.
+- **How to Run**:
+  - Navigate to the `handwritten_digits_pytorch` directory.
+  - Run the script:
+    ```bash
+    python mnist_classification.py
+    ```
+  - Example Output:
+    ```
+    Training Epoch: 1/10, Loss: 0.345, Accuracy: 92.3%
+    Validation Accuracy: 91.8%
+    ```
+
+---
+
+### 4. **Convolutional Neural Network (CNN)** (Coming Soon)
+- **Description**: A model designed for processing grid-like data such as images using convolutional layers.
 - **Directory**: [cnn_model_pytorch](cnn_model_pytorch)
+- **Features**:
+  - Convolutional, pooling, and fully connected layers.
+  - Suitable for image classification and object detection tasks.
 
 ---
 
-### 4. **Recurrent Neural Network (RNN)** (Coming Soon)
-- **Description**: A type of neural network used for sequential data, such as time-series or natural language.
+### 5. **Recurrent Neural Network (RNN)** (Coming Soon)
+- **Description**: A model for sequential data processing, such as time-series or natural language processing (NLP).
 - **Directory**: [rnn_model_pytorch](rnn_model_pytorch)
+- **Features**:
+  - Processes input sequences of variable lengths.
+  - Uses LSTMs or GRUs for better performance on long sequences.
 
 ---
 
-### 5. **Autoencoder** (Coming Soon)
-- **Description**: An unsupervised learning model used for dimensionality reduction and feature extraction.
+### 6. **Autoencoder** (Coming Soon)
+- **Description**: An unsupervised learning model for dimensionality reduction and feature extraction.
 - **Directory**: [autoencoder_model_pytorch](autoencoder_model_pytorch)
+- **Features**:
+  - Includes encoder and decoder networks.
+  - Useful for anomaly detection and image compression.
 
 ---
 
 ## Data Loaders
 
+Custom data loaders to streamline data preprocessing and integration with PyTorch models.
+
 ### 1. **Image Data Loader**
-- **Description**: A custom data loader for loading and preprocessing image datasets from a directory structure.
+- **Description**: A custom loader for loading and preprocessing image datasets from directory structures.
 - **Directory**: [data_loader/image_data_loader.py](data_loader/image_data_loader.py)
 - **Features**:
-  - Loads images from a directory with class-specific subdirectories.
+  - Loads images organized in class-specific subdirectories.
   - Applies transformations using `torchvision.transforms`.
-  - Returns image-label pairs for training/testing.
+  - Returns image-label pairs for PyTorch's `DataLoader`.
 - **How to Use**:
-  - Define the directory structure: `images/<class_name>/<image_file>`.
-  - Instantiate the loader and pass it to a PyTorch `DataLoader`.
-  - Example:
     ```python
     from data_loader.image_data_loader import ImageLoader
     from torch.utils.data import DataLoader
@@ -85,15 +141,12 @@ This repository includes a range of neural network models, each implemented in i
 ---
 
 ### 2. **Numerical Data Loader**
-- **Description**: A custom data loader for numerical datasets (e.g., tabular data).
+- **Description**: A custom loader for numerical datasets, such as tabular data.
 - **Directory**: [data_loader/numerical_data_loader.py](data_loader/numerical_data_loader.py)
 - **Features**:
-  - Accepts numerical data (e.g., features and labels).
-  - Converts data into PyTorch tensors for compatibility with neural network models.
-  - Suitable for datasets like CSV files or preprocessed numerical arrays.
+  - Converts numerical data into PyTorch tensors.
+  - Handles datasets like CSV files or preprocessed numerical arrays.
 - **How to Use**:
-  - Pass the feature matrix and labels during initialization.
-  - Example:
     ```python
     from data_loader.numerical_data_loader import CustomNumericalLoader
     from torch.utils.data import DataLoader
@@ -113,16 +166,13 @@ This repository includes a range of neural network models, each implemented in i
 ## Installation
 
 ### Prerequisites
+Ensure you have the following installed:
+- **Python 3.x**
+- **PyTorch** (installation guide: [PyTorch](https://pytorch.org/get-started/locally/))
+- **scikit-learn** (for preprocessing in multiclassification models)
+- **torchvision** (for image transformations)
 
-Ensure you have the following installed on your machine:
-
-- **Python** 3.x
-- **PyTorch** (visit the [official PyTorch website](https://pytorch.org/get-started/locally/) for installation instructions)
-- **scikit-learn** (for preprocessing data in the Multiclassification model)
-- **torchvision** (for image transformations in the Image Data Loader)
-
-You can install the necessary dependencies using `pip`:
-
+Install the necessary dependencies:
 ```bash
 pip install torch torchvision scikit-learn
 ```
@@ -131,15 +181,15 @@ pip install torch torchvision scikit-learn
 
 ## Contributions
 
-Contributions are welcome! If you'd like to add a new model or enhance the existing implementations, feel free to submit a pull request.
+Contributions are welcome! To contribute:
+- Fork this repository.
+- Create a feature branch (`git checkout -b feature-name`).
+- Commit your changes (`git commit -m "Feature description"`).
+- Push the branch (`git push origin feature-name`).
+- Submit a pull request.
 
 ---
 
 ## License
 
-This repository is licensed under the MIT License. See the LICENSE file for details.
-
----
-
-
-
+This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
