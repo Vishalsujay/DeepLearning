@@ -60,7 +60,7 @@ This repository includes various neural network models, each organized in its ow
 
 ### 3. **Handwritten Digits Classification Using Multilayer Perceptron**
 - **Description**: A neural network model for classifying handwritten digits using the MNIST dataset.
-- **Directory**: [HandwrittenDigits](handwritten_digits_pytorch)
+- **Directory**: [HandWritten_Digit_Classifier](handwritten_digits_pytorch)
 - **Dependencies**: PyTorch, torchvision
 - **Features**:
   - Implements a simple Multilayer Perceptron (MLP) architecture.
@@ -70,7 +70,7 @@ This repository includes various neural network models, each organized in its ow
   - Navigate to the `handwritten_digits_pytorch` directory.
   - Run the script:
     ```bash
-    python mnist_classification.py
+    python main.py
     ```
   - Example Output:
     ```
