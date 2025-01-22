@@ -12,12 +12,13 @@ This repository provides a collection of neural network models and custom data l
     - [Convolutional Neural Network (CNN)](#4-convolutional-neural-network-cnn-coming-soon)
     - [Recurrent Neural Network (RNN)](#5-recurrent-neural-network-rnn-coming-soon)
     - [Autoencoder](#6-autoencoder-coming-soon)
-2. [Data Loaders](#data-loaders)
+2. [Regularization](#regularization)
+3. [Data Loaders](#data-loaders)
     - [Image Data Loader](#1-image-data-loader)
     - [Numerical Data Loader](#2-numerical-data-loader)
-3. [Installation](#installation)
-4. [Contributions](#contributions)
-5. [License](#license)
+4. [Installation](#installation)
+5. [Contributions](#contributions)
+6. [License](#license)
 
 ---
 
@@ -107,6 +108,25 @@ This repository includes various neural network models, each organized in its ow
 
 ---
 
+## Regularization
+
+Regularization is a crucial technique in neural networks to prevent overfitting and improve the model’s generalization on unseen data. This repository incorporates several regularization methods in its models:
+
+1. **Dropout**
+   - Used in the `Multiclassification` model.
+   - Randomly drops a fraction of neurons during training to prevent reliance on specific features.
+
+2. **Weight Decay (L2 Regularization)**
+   - Penalizes large weights by adding an L2 norm term to the loss function.
+   - Can be configured in most models using PyTorch’s optimizer.
+
+3. **Batch Normalization** (Future Implementation)
+   - Will be added in upcoming models like CNNs to stabilize learning and reduce dependence on initialization.
+
+Each regularization method is implemented with easy-to-configure parameters to suit different datasets and tasks.
+
+---
+
 ## Data Loaders
 
 Custom data loaders to streamline data preprocessing and integration with PyTorch models.
@@ -193,3 +213,4 @@ Contributions are welcome! To contribute:
 ## License
 
 This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
