@@ -1,6 +1,6 @@
 # Neural Network Models and Data Loaders in PyTorch
 
-This repository provides a collection of neural network models and custom data loaders implemented using PyTorch. It is designed for both beginners and advanced users to explore, experiment, and learn about neural network architectures and preprocessing pipelines. 
+This repository provides a collection of neural network models and custom data loaders implemented using PyTorch. It is designed for both beginners and advanced users to explore, experiment, and learn about neural network architectures and preprocessing pipelines.
 
 ---
 
@@ -10,8 +10,8 @@ This repository provides a collection of neural network models and custom data l
     - [Multiclassification](#2-multiclassification)
     - [Handwritten Digits Classification Using Multilayer Perceptron](#3-handwritten-digits-classification-using-multilayer-perceptron)
     - [Convolutional Neural Network (CNN)](#4-convolutional-neural-network-cnn-coming-soon)
-    - [Recurrent Neural Network (RNN)](#5-recurrent-neural-network-rnn-coming-soon)
-    - [Autoencoder](#6-autoencoder-coming-soon)
+    - [Transfer Learning](#5-transfer-learning)
+    - [Transformer](#6-transformer)
 2. [Regularization](#regularization)
 3. [Data Loaders](#data-loaders)
     - [Image Data Loader](#1-image-data-loader)
@@ -35,7 +35,7 @@ This repository includes various neural network models, each organized in its ow
   - Uses mean squared error (MSE) as the loss function.
 - **How to Run**:
   - Navigate to the `linear_regression_pytorch` directory.
-  - Run the script: 
+  - Run the script:
     ```bash
     python linear_regression.py
     ```
@@ -52,7 +52,7 @@ This repository includes various neural network models, each organized in its ow
   - Uses the Iris dataset for classification tasks.
 - **How to Run**:
   - Navigate to the `multiclassification_pytorch` directory.
-  - Run the script: 
+  - Run the script:
     ```bash
     python multiclassification.py
     ```
@@ -90,21 +90,39 @@ This repository includes various neural network models, each organized in its ow
 
 ---
 
-### 5. **Recurrent Neural Network (RNN)** (Coming Soon)
-- **Description**: A model for sequential data processing, such as time-series or natural language processing (NLP).
-- **Directory**: [rnn_model_pytorch](rnn_model_pytorch)
+### 5. **Transfer Learning**
+- **Description**: A model leveraging pre-trained deep learning models for efficient training on new datasets.
+- **Directory**: [transfer_learning](transfer_learning_pytorch)
+- **Dependencies**: PyTorch, torchvision
 - **Features**:
-  - Processes input sequences of variable lengths.
-  - Uses LSTMs or GRUs for better performance on long sequences.
+  - Uses a pre-trained ResNet model to classify the Caltech101 dataset.
+  - Demonstrates feature extraction and fine-tuning methods.
+- **How to Run**:
+  - Navigate to the `transfer_learning_pytorch` directory.
+  - Run the script:
+    ```bash
+    python transfer_learning_caltech101.py
+    ```
 
 ---
 
-### 6. **Autoencoder** (Coming Soon)
-- **Description**: An unsupervised learning model for dimensionality reduction and feature extraction.
-- **Directory**: [autoencoder_model_pytorch](autoencoder_model_pytorch)
+### 6. **Transformer**
+- **Description**: Transformer models for NLP tasks using BERT.
+- **Directory**: [transformer_pytorch](transformer_pytorch)
+- **Dependencies**: PyTorch, transformers (Hugging Face library)
 - **Features**:
-  - Includes encoder and decoder networks.
-  - Useful for anomaly detection and image compression.
+  - Implements BERT-based spam detection.
+  - Demonstrates basic BERT usage with fine-tuning capabilities.
+- **How to Run**:
+  - Navigate to the `transformer_pytorch` directory.
+  - Run the script:
+    ```bash
+    python spam_detection_bert.py
+    ```
+  - To explore BERT basics, run:
+    ```bash
+    python bert_basics_usage.py
+    ```
 
 ---
 
@@ -120,10 +138,8 @@ Regularization is a crucial technique in neural networks to prevent overfitting 
    - Penalizes large weights by adding an L2 norm term to the loss function.
    - Can be configured in most models using PyTorch’s optimizer.
 
-3. **Batch Normalization** (Future Implementation)
+3. **Batch Normalization** 
    - Will be added in upcoming models like CNNs to stabilize learning and reduce dependence on initialization.
-
-Each regularization method is implemented with easy-to-configure parameters to suit different datasets and tasks.
 
 ---
 
@@ -138,48 +154,12 @@ Custom data loaders to streamline data preprocessing and integration with PyTorc
   - Loads images organized in class-specific subdirectories.
   - Applies transformations using `torchvision.transforms`.
   - Returns image-label pairs for PyTorch's `DataLoader`.
-- **How to Use**:
-    ```python
-    from data_loader.image_data_loader import ImageLoader
-    from torch.utils.data import DataLoader
-    from torchvision import transforms
-
-    transform = transforms.Compose([
-        transforms.Resize((128, 128)),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    ])
-
-    train_dataset = ImageLoader(image_dir='images/train_data', transform=transform)
-    train_loader = DataLoader(train_dataset, batch_size=2, shuffle=True)
-
-    for images, labels in train_loader:
-        print(images.shape, labels)
-        break
-    ```
 
 ---
 
 ### 2. **Numerical Data Loader**
 - **Description**: A custom loader for numerical datasets, such as tabular data.
 - **Directory**: [data_loader/numerical_data_loader.py](data_loader/numerical_data_loader.py)
-- **Features**:
-  - Converts numerical data into PyTorch tensors.
-  - Handles datasets like CSV files or preprocessed numerical arrays.
-- **How to Use**:
-    ```python
-    from data_loader.numerical_data_loader import CustomNumericalLoader
-    from torch.utils.data import DataLoader
-
-    X_train, Y_train = ...  # Load or preprocess your data
-
-    train_dataset = CustomNumericalLoader(X_train, Y_train)
-    train_loader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-
-    for features, labels in train_loader:
-        print(features.shape, labels)
-        break
-    ```
 
 ---
 
@@ -194,7 +174,7 @@ Ensure you have the following installed:
 
 Install the necessary dependencies:
 ```bash
-pip install torch torchvision scikit-learn
+pip install torch torchvision scikit-learn transformers
 ```
 
 ---
